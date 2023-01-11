@@ -843,15 +843,19 @@ export default function Map({
 
   const [coords, setCoords] = useState([]);
 
-  useEffect(() => {
-    innerBounds.map((item) => {
-      if (item.id === govid.toString()) {
-        setCoords(item.coordinates);
-      }
-    });
-  }, [govid]);
+console.log(govid)
 
-  console.log(govid);
+    useEffect(() => {
+      innerBounds.map((item) => {
+        if (item.id === govid.toString()) {
+          setCoords(item.coordinates);
+        }
+      });
+    }, [govid]);
+
+  
+
+
 
   function onEachConstruction(construction, layer) {
     const COProjectName = construction.properties.co_name_eng;
@@ -895,24 +899,26 @@ export default function Map({
     );
   }
 
+
+  console.log(coords)
   function LocationMarker() {
     const [position, setPosition] = useState(null);
 
     const map = useMapEvents({
       locationfound(e) {
         setPosition(e.latlng);
-        map.flyTo(e.latlng, map.zoomIn(2));
+        map.flyTo(e.latlng, map.getZoom());
       },
     });
 
     useEffect(() => {
       if (areaGov === true) {
-        map.flyTo([areazone, areazone1], map.getZoom());
-        setPosition([areazone, areazone1]);
+        // map.flyTo([areazone, areazone1], map.getZoom());
         map.fitBounds(coords);
+        setPosition([areazone, areazone1]);
       } else {
         setPosition([projectCoordinated, projectCoordinated1]);
-        map.flyTo([projectCoordinated, projectCoordinated1], map.getZoom(), map.setZoom(13));
+        map.flyTo([projectCoordinated, projectCoordinated1], map.getZoom());
         
       }
       // if(projectPosition === true)
