@@ -12,11 +12,11 @@ import Technical from "./Technical";
 import dynamic from "next/dynamic";
 
 const MyMap = dynamic(() => import("../src/components/Map"), {
-  ssr: false
+  ssr: false,
 });
 
 export default function Home() {
-const [proImage, setProImage] = useState("")
+  const [proImage, setProImage] = useState("");
   const [sanitary, setSanitary] = useState(false);
   const [construction, setConstruction] = useState(false);
   const [station, setStation] = useState(false);
@@ -24,21 +24,22 @@ const [proImage, setProImage] = useState("")
   const [show, setShow] = useState(false);
   const [about, setAbout] = useState(false);
   const [info, setInfo] = useState(false);
-  const [tech, setTech] = useState(false)
-  const [areaGov, setAreaGov] = useState(false)
+  const [tech, setTech] = useState(false);
+  const [areaGov, setAreaGov] = useState(false);
   const [position, setPosition] = useState(null);
   const [govid, setGovid] = useState(0);
   const [govzone, setGovZone] = useState(29.3117);
   const [govzone1, setGovZone1] = useState(47.4818);
   const [areazone, setAreaZone] = useState(29.3117);
   const [areazone1, setAreaZone1] = useState(47.4818);
-  const [projectCoordinated, setProjectCoordinates] = useState(29.3117)
-  const [projectCoordinated1, setProjectCoordinates1] = useState(47.4818)
-  const [projectName,setProjectName] = useState("")
-  const [projectDescription, setProjectDescription] = useState("")
+  const [projectCoordinated, setProjectCoordinates] = useState(29.3117);
+  const [projectCoordinated1, setProjectCoordinates1] = useState(47.4818);
+  const [projectName, setProjectName] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
   const [projectPosition, setprojectPosition] = useState(false);
   const [gov, setGov] = useState(false);
   const [area, setArea] = useState(false);
+  const [clearZoom, setClearZoom] = useState(false);
 
   useEffect(() => {
     Areas.features.map((item) => {
@@ -61,59 +62,86 @@ const [proImage, setProImage] = useState("")
   return (
     <div className="overflow-y-hidden font-tajwal">
       <Head>
-      <title>مستكشف المشاريع الجغرافية</title>
-      <meta name="description" content="نظام مستكشف المشاريع الجغرافية وزارة الأشغال العامة الكويت" />
+        <title>مستكشف المشاريع الجغرافية</title>
+        <meta
+          name="description"
+          content="نظام مستكشف المشاريع الجغرافية وزارة الأشغال العامة الكويت"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header tech={tech} setShow={setShow} show={show} setAbout={setAbout} about={about} info={info} setTech={setTech}/>
+      <Header
+        tech={tech}
+        setShow={setShow}
+        show={show}
+        setAbout={setAbout}
+        about={about}
+        info={info}
+        setTech={setTech}
+      />
       <div className={"flex ease-in-out duration-500"}>
-        <div className={info? "hidden" :about? "hidden": tech? "hidden": "block"}>
         <div
           className={
-            show
-              ? ` sm:w-[300px] lg:mt-[69.38px] z-40 ease-in-out duration-500 h-screen overflow-y-scroll overflow-x-hidden scrollbar-hide`
-              : `w-0 ease-in-out duration-500  md:mt-[69.38px]`
+            info ? "hidden" : about ? "hidden" : tech ? "hidden" : "block"
           }
         >
-          <Sidebar
-            show={show}
-            setShow={setShow}
-            govid={govid}
-            setGovid={setGovid}
-            sanitary={sanitary}
-            setSanitary={setSanitary}
-            construction={construction}
-            setConstruction={setConstruction}
-            station={station}
-            setStation={setStation}
-            mega={mega}
-            setMega={setMega}
-            projectCoordinated={projectCoordinated}
-            setProjectCoordinates={setProjectCoordinates}
-            setProjectCoordinates1={setProjectCoordinates1}
-            setProjectName={setProjectName}
-            setProjectDescription={setProjectDescription}
-            setGovZone1={setGovZone1}
-            setAreaZone={setAreaZone}
-            setAreaZone1={setAreaZone1}
-            setInfo={setInfo}
-            info={info}
-            projectPosition={projectPosition} 
-            setprojectPosition={setprojectPosition}
-            areaGov={areaGov} 
-            setAreaGov={setAreaGov}
-            proImage={proImage}
-            setProImage={setProImage}
-            gov={gov} 
-            setGov={setGov}
-            area={area} 
-            setArea={setArea}
-          />
-        </div>
+          <div
+            className={
+              show
+                ? ` sm:w-[300px] lg:mt-[69.38px] z-40 ease-in-out duration-500 h-screen overflow-y-scroll overflow-x-hidden scrollbar-hide`
+                : `w-0 ease-in-out duration-500  md:mt-[69.38px]`
+            }
+          >
+            <Sidebar
+              show={show}
+              setShow={setShow}
+              govid={govid}
+              setGovid={setGovid}
+              sanitary={sanitary}
+              setSanitary={setSanitary}
+              construction={construction}
+              setConstruction={setConstruction}
+              station={station}
+              setStation={setStation}
+              mega={mega}
+              setMega={setMega}
+              projectCoordinated={projectCoordinated}
+              setProjectCoordinates={setProjectCoordinates}
+              setProjectCoordinates1={setProjectCoordinates1}
+              setProjectName={setProjectName}
+              setProjectDescription={setProjectDescription}
+              setGovZone1={setGovZone1}
+              setAreaZone={setAreaZone}
+              setAreaZone1={setAreaZone1}
+              setInfo={setInfo}
+              info={info}
+              projectPosition={projectPosition}
+              setprojectPosition={setprojectPosition}
+              areaGov={areaGov}
+              setAreaGov={setAreaGov}
+              proImage={proImage}
+              setProImage={setProImage}
+              gov={gov}
+              setGov={setGov}
+              area={area}
+              setArea={setArea}
+              clearZoom={clearZoom}
+              setClearZoom={setClearZoom}
+            />
+          </div>
         </div>
         {/* <Search /> */}
-        <div className={about ? "hidden" :info? 'hidden' :tech? "hidden" : "w-full h-full"}>
-          <MyMap 
+        <div
+          className={
+            about
+              ? "hidden"
+              : info
+              ? "hidden"
+              : tech
+              ? "hidden"
+              : "w-full h-full"
+          }
+        >
+          <MyMap
             govzone={govzone}
             govzone1={govzone1}
             areazone={areazone}
@@ -123,20 +151,21 @@ const [proImage, setProImage] = useState("")
             projectName={projectName}
             projectDescription={projectDescription}
             position={position}
-            projectPosition={projectPosition} 
+            projectPosition={projectPosition}
             setprojectPosition={setprojectPosition}
             construction={construction}
-            areaGov={areaGov} 
+            areaGov={areaGov}
             setAreaGov={setAreaGov}
             proImage={proImage}
             setProImage={setProImage}
             govid={govid}
-            gov={gov} 
+            gov={gov}
             setGov={setGov}
-            
+            clearZoom={clearZoom}
+            setClearZoom={setClearZoom}
           />
           <div className="hidden lg:block">
-          <Legends />
+            <Legends />
           </div>
         </div>
         {about && (
@@ -163,8 +192,8 @@ const [proImage, setProImage] = useState("")
             </div>
           </div>
         )}
-{info&&
-<div className="w-full h-full bg-[#162641] ">
+        {info && (
+          <div className="w-full h-full bg-[#162641] ">
             <div
               id="defaultModal"
               tabindex="-1"
@@ -186,9 +215,9 @@ const [proImage, setProImage] = useState("")
               </div>
             </div>
           </div>
-          }
-{tech&&
-<div className="w-full h-full bg-[#162641] ">
+        )}
+        {tech && (
+          <div className="w-full h-full bg-[#162641] ">
             <div
               id="defaultModal"
               tabindex="-1"
@@ -210,7 +239,7 @@ const [proImage, setProImage] = useState("")
               </div>
             </div>
           </div>
-          }
+        )}
       </div>
     </div>
   );

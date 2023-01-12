@@ -37,8 +37,9 @@ const Sidebar = ({
   gov, 
   setGov,
   area, 
-  setArea
-
+  setArea,
+  clearZoom, 
+  setClearZoom
 }) => {
   const [constructionProject, setConstructionProject] = useState("");
   const [showOptions, setShowOptions] = useState(false);
@@ -535,6 +536,7 @@ const Sidebar = ({
                           setGovid(e.target.value);
                           setprojectPosition(false);
                           setAreaGov(true);
+                          setClearZoom(false)
                         }}
                       >
                         {gov ? (
@@ -1138,6 +1140,7 @@ const Sidebar = ({
                     setProjectCoordinates(29.3117);
                     setProjectCoordinates1(47.4818);
                     setAreaGov(false)
+                    setClearZoom(true)
                   }}
                   className="bg-[#9d3039] p-1 w-[250px] hover:bg-[#9d3039]/70 ease-in-out duration-200 "
                 >
