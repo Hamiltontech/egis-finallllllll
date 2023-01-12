@@ -60,7 +60,7 @@ export default function Home() {
   }, [govid]);
 
   return (
-    <div className="overflow-y-hidden font-tajwal">
+    <div className="font-tajwal no-scrollbar h-screen">
       <Head>
         <title>مستكشف المشاريع الجغرافية</title>
         <meta
@@ -78,17 +78,17 @@ export default function Home() {
         info={info}
         setTech={setTech}
       />
-      <div className={"flex ease-in-out duration-500"}>
+      <div className={"flex ease-in-out duration-500 no-scrollbar"}>
         <div
           className={
-            info ? "hidden" : about ? "hidden" : tech ? "hidden" : "block"
+            info ? "hidden" : about ? "hidden" : tech ? "hidden" : "block no-scrollbar"
           }
         >
           <div
             className={
               show
-                ? ` sm:w-[300px] lg:mt-[69.38px] z-40 ease-in-out duration-500 h-screen overflow-y-scroll overflow-x-hidden scrollbar-hide`
-                : `w-0 ease-in-out duration-500  md:mt-[69.38px]`
+                ? ` sm:w-[300px]  z-40 ease-in-out duration-500 h-screen overflow-y-scroll overflow-x-hidden scrollbar-hide no-scrollbar`
+                : `w-0 ease-in-out duration-500   no-scrollbar`
             }
           >
             <Sidebar
